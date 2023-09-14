@@ -1,4 +1,4 @@
-# Project: Facial Recognition Login System
+# Project: *Experimental* Facial Recognition Login System for E-commerce Site
 
 🌀 **Model:** Spiral Model
 
