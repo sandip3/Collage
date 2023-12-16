@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block login %}
+
+<div class="mx-auto" style="margin-top: 100px; width: 500px;" ;>
+    <form action="" method="post" class="form-horizontal">
+        {% csrf_token%}
+        <div class="col-sm-8 col-sm-offset-4">
+            <h2 style="text-align:center;">LOGIN</h2>
+        </div>
+        
+        {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            {{error}}
+        {% endfor %}
+                
+        
+        {% endif %}
+        {% for fm in form %}
+            {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}<br><br>
+        {% endfor %}
+          
+        <input type="submit"  class = "btn btn-primary" value="Login">
+    </form><br>     
+        
+        <small>Don't you have an account ?</small>
+        <a href="{% url 'signup' %}">Create Account</a>
+        
+    </form>
+</div>
+{% endblock login %}
+

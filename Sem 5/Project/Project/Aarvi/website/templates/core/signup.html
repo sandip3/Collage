@@ -1,0 +1,96 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block signup %}
+<div class="mx-auto" style="margin-top: 100px; width: 500px;" ;>
+    <form action="{% url 'signup' %}" method="POST" class="form-horizontal" enctype="multipart/form-data" >
+        {% csrf_token%}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" name="passworderror">
+            <strong>Holy guacamole!</strong> Password doesn't match please enter correct password.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" name="passworderror">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <div class="col-sm-8 col-sm-offset-4">
+            <h2 style="text-align:center;">Sign Up</h2>
+        </div>
+        <div class = "success" style="color:    red;">
+            {% if messages %}
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="uname" name="username" value="">
+        </div>
+        <div class="form-group">
+            <label for="fname">First Name:</label>
+            <input type="text" class="form-control" id="fname" name="fname" value="">
+        </div>
+        <div class="form-group">
+            <label for="lname">Last Name:</label>
+            <input type="text" class="form-control" id="lname" name="lname" value="">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email" value="">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="Password" name="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password Confirmation</label>
+            <input type="password" class="form-control" id="Password1" name="password1" placeholder="Password">
+        </div>
+        <div class="form-group" style="display: inline-flex;">
+            <p>Select Group :</p>
+            <input type="radio" id="radio1" name="group" value="buyer"><label for="buyer"> Buyer:</label>
+            <input type="radio" id="radio2" name="group" value="seller"><label for="seller"> Seller:</label>
+                   
+        </div><br>
+        <div class="form-inline" >Select Interest ::
+            <label class="checkbox-inline"><input type="checkbox" id="checkbox1" name="interest" value="Shirt">Shirt</label>
+            <label class="checkbox-inline"><input type="checkbox" id="checkbox2" name="interest" value="Jean">Jean</label>
+            <label class="checkbox-inline"><input type="checkbox" id="checkbox3" name="interest" value="Watch">Watch</label>
+            <label class="checkbox-inline"><input type="checkbox" id="checkbox4" name="interest" value="Bag">Bag</label>
+        </div>
+        <div class="form-group">
+            <label for="city">Choose a city:</label>
+            <select name="city" id="city">
+                <option value="Surat">Surat</option>
+                <option value="Vadodara">Vadodara</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Bharuch">Bharuch</option>
+                <option value="Navsari">Navsari</option>
+             </select>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" required name="checkbox">
+            <label class="form-check-label" for="exampleCheck1">Accept all Terms & Conditions regarding this site </label>
+        </div>
+        <button type="submit" onclick= "click()" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<script>
+    function click(){
+    let password = document.getElementById('password').value
+    let password1 = document.getElementById('password1').value
+    let passworderror = document.getElementById('passworderror')
+        if (password != password1):{
+            passworderror.style.display = "block";
+                setTimeout(() =>{
+                    passworderror.style.display = "none";
+            },1000);
+            event.preventDefault();
+            } 
+        }
+
+</script>
+{% endblock signup %}
+
+
+    
